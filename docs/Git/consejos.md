@@ -19,6 +19,7 @@ title: "Consejos"
    La recomendación es usar git fetch periódicamente para actualizar solo la referencia a las ramas remotas, y darle una inspección rápida y decidir qué hacer.
    Para mantener el repositorio limpio, nuestros commits locales deben estar encima de los cambios de los demás, y para esto en lugar de git pull deberemos usar git pull –rebase. Así los conflictos serán resueltos commit por commit y no todo en uno.
    No es bueno hacer un rebase de un repositorio remoto, pero en local es bueno para mantener la historia local limpio.
+   Lo recomendable es crear una nueva rama para agregar nueva funcionalidad a la aplicación. En local haces un rebase para ver un historial limpio y en remoto se hace un merge commit para implementar esta funcionalidad en la rama principal.
 
 5. **NUNCA Usar Fast Forward**
    Con git merge no aseguramos un merge commit, estos solo son necesarios cuando ambas ramas a mezclar tienen nuevos commits.
