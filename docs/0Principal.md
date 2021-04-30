@@ -1,6 +1,6 @@
 ---
 slug: /
-title: 'Principal'
+title: 'Inicio'
 ---
 
 <div align="center">
