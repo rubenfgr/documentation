@@ -2,6 +2,8 @@
 title: "Referencia"
 ---
 
+**Documentación oficial:** [http://nginx.org/en/docs/](http://nginx.org/en/docs/)
+
 Software libre y de código abierto, licenciado bajo licencia BSD. También existe una versión comercial, Nginx Plus.
 Es un servidor web o servidor proxy inverso ligero de alto rendimiento que también permite protocolos de correo electrónico IMAP/POP3.
 
