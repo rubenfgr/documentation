@@ -1,10 +1,10 @@
 ---
-title: "Comandos"
+title: "Referencia"
 ---
 
-Información sobre el servicio de Docker
+> Información sobre el servicio de Docker
 
-" /var/run/docker.sock
+`/var/run/docker.sock`
 
 - **Correr HELLO-WORLD**
 
@@ -50,7 +50,7 @@ docker image rm -f "ID-imagen"
 docker rmi "nombre-imagen":"tag-imagen" ["nombre-imagen":"tag-imagen"]
 ```
 
-## IMAGENES OFICIALES
+### IMAGENES OFICIALES
 
 - **Descargar una imagen oficial**
 
@@ -62,7 +62,7 @@ docker pull "nombre-imagen"
 docker pull "nombre-imagen":"version"
 ```
 
-## IMAGENES PERSONALIZADAS
+### IMAGENES PERSONALIZADAS
 
 - **Buenas practicas**
 
@@ -115,7 +115,7 @@ EXPOSE 81
 CMD apachectl -DFOREGROUND
 ```
 
-# DOCKERFILE
+#### DOCKERFILE
 
 - **Crear un script CMD para Dockerfile**
 
@@ -126,7 +126,7 @@ echo "Iniciando container..."
 apachectl -DFOREGROUND
 ```
 
-# BUILD
+### BUILD
 
 - **Enviar datos al .dockerignore**
 
@@ -156,7 +156,7 @@ docker history -H "nombre-imagen":"tag"
 docker history -H "nombre-imagen":"tag" --no-trunc
 ```
 
-# CONTAINERS
+## CONTAINERS
 
 - **Correr un contenedor (-d en segundo plano)**
 
@@ -293,7 +293,7 @@ docker run -d -w /"dir-name" "nombre-imagen"[:"tag"]
 
 `du -shc *`
 
-# VOLUMES
+## VOLUMES
 
 - **Volúmenes de host - Caso práctico MySQL**
 
@@ -385,7 +385,7 @@ docker run -v $PWD/common:/opt -d --name gen generador
 docker run -d --name nginx -v $PWD/common:/usr/share/nginx/html -p 80:80 nginx
 ```
 
-# DOCUMENT ROOT
+## DOCUMENT ROOT
 
 - **Mostrar el directorio root**
 
@@ -409,236 +409,239 @@ docker info | grep -i root
 
 `systemctl restart docker`
 
-# REDES
+## NETWORK
 
 - **Mostrar la IP de docker**
 
-```
-ip a | grep docker
-docker run -d nginx
-docker inspect "nombre-proceso-nginx"
-docker inspect "nombre-proceso-nginx" | less
-```
+  ```sh
+  ip a | grep docker
+  docker run -d nginx
+  docker inspect "nombre-proceso-nginx"
+  docker inspect "nombre-proceso-nginx" | less
+  ```
 
 - **Mostrar las redes de docker**
 
-```
-docker network ls
-```
+  ```sh
+  docker network ls
+  ```
 
 - **Crear una nueva red**
 
-```sh
-docker network create test-network
-# Personalizada
-docker network create -d bridge --subnet 172.20.10.0/24 --gateway 142.20.10.1 "nombre-red"
-```
+  ```sh
+  docker network create test-network
+  # Personalizada
+  docker network create -d bridge --subnet 172.20.10.0/24 --gateway 142.20.10.1 "nombre-red"
+  ```
 
 - **Crear un contenedor dentro de una red**
 
-```sh
-docker run --network "docker-test-network" -d --name test3 "nombre-imagen"
-# Con IP personalizada
-docker run --network "docker-test-network" --ip "IP" -d --name test3 "nombre-imagen"
-```
+  ```sh
+  docker run --network "docker-test-network" -d --name test3 "nombre-imagen"
+  # Con IP personalizada
+  docker run --network "docker-test-network" --ip "IP" -d --name test3 "nombre-imagen"
+  ```
 
 - **Hacer ping de un contenedor a otro en la misma subnet**
 
-```sh
-docker exec "nombre-contenedor" bash -c "ping "IP""
-# Con nombre solo para redes creadas por nosotros, NO se puede desde "bridge" (por defecto)
-docker exec "nombre-contenedor" bash -c "ping "nombre-contenedor""
-```
+  ```sh
+  docker exec "nombre-contenedor" bash -c "ping "IP""
+  # Con nombre solo para redes creadas por nosotros, NO se puede desde "bridge" (por defecto)
+  docker exec "nombre-contenedor" bash -c "ping "nombre-contenedor""
+  ```
 
 - **Conectar contenedores en distintas redes**
 
-```sh
-docker network connect "nombre-red" "nombre-contenedor"
-```
+  ```sh
+  docker network connect "nombre-red" "nombre-contenedor"
+  ```
 
 - **Desconectar contenedores en distintas redes**
 
-```sh
-docker network disconnect "nombre-red" "nombre-contenedor"
-```
+  ```sh
+  docker network disconnect "nombre-red" "nombre-contenedor"
+  ```
 
 - **Eliminar redes**
 
-```sh
-# Se deben eliminar "antes" los contenedores de la misma
-docker network rm
-```
+  ```sh
+  # Se deben eliminar "antes" los contenedores de la misma
+  docker network rm
+  ```
 
 - **Conectar un contenedor a la red host**
 
-```sh
-docker run -d --network host --name cont5 -ti debian
-# Este contenedor tendrá los mismos parámetros de red que el host
-```
+  ```sh
+  docker run -d --network host --name cont5 -ti debian
+  # Este contenedor tendrá los mismos parámetros de red que el host
+  ```
 
 - **Contenedores SIN red - none**
 
-```sh
-docker run --network none --name cont -d -ti debian
-```
+  ```sh
+  docker run --network none --name cont -d -ti debian
+  ```
 
 - **Contenedor en red host con acceso solo desde "localhost**
 
-```sh
-# Acceso desde localhost y IP local del host
-docker run -d -p 8080:80 nginx
-# Acceso sólo desde localhost
-docker run -d -p 127.0.0.1:8081:80 nginx
-```
+  ```sh
+  # Acceso desde localhost y IP local del host
+  docker run -d -p 8080:80 nginx
+  # Acceso sólo desde localhost
+  docker run -d -p 127.0.0.1:8081:80 nginx
+  ```
 
-# Docker Compose
+## DOCKER COMPOSE
 
-- \*\*Crear un archivo "docker-compose.yml"
+- **Crear un archivo "docker-compose.yml**
 
-```yml
-version: "3.8"
-services:
-  web:
-    image: nginx
-    container_name: nginx1
-    ports:
-      - "8080:80"
-    environment:
-      - "MY_ENV=RUBENFGR"
-    #env_file: common.env (rear un archivo de claves/valor)
-    volumes:
-      - "vol2:/usr/share/nginx/html"
-    #volumes: (HOST)
-    #- '$PWD/HTML:/usr/share/nginx/html'
-    networks:
-      - net-test
-  web2:
-    image: nginx
-    container_name: nginx2
-    ports:
-      - "8081:80"
-    networks:
-      - net-test
-volumes:
-  vol2:
-networks:
-  net-test:
-```
+  ```yml
+  version: "3.8"
+  services:
+    web:
+      image: nginx
+      container_name: nginx1
+      ports:
+        - "8080:80"
+      environment:
+        - "MY_ENV=RUBENFGR"
+      #env_file: common.env (rear un archivo de claves/valor)
+      volumes:
+        - "vol2:/usr/share/nginx/html"
+      #volumes: (HOST)
+      #- '$PWD/HTML:/usr/share/nginx/html'
+      networks:
+        - net-test
+    web2:
+      image: nginx
+      container_name: nginx2
+      ports:
+        - "8081:80"
+      networks:
+        - net-test
+  volumes:
+    vol2:
+  networks:
+    net-test:
+  ```
 
-```sh
-# Iniciar el contenedor con docker-compose
-docker-compose up -d
-# Iniciar especificando el archivo
-docker-compose -f "my-file".yml up -d
-# Parar eliminar el contenedor creado
-docker-compose down
-```
+  ```sh
+  # Iniciar el contenedor con docker-compose
+  docker-compose up -d
+  # Iniciar especificando el archivo
+  docker-compose -f "my-file".yml up -d
+  # Parar eliminar el contenedor creado
+  docker-compose down
+  ```
 
 - **Build docker-compose**
 
-  1.  Crear un Dockerfile
+  1. Crear un Dockerfile
 
-      ```sh
-      FROM debian
+  ```sh
+  FROM debian
 
-      RUN mkdir /opt/test
-      ```
+  RUN mkdir /opt/test
+  ```
 
-  2.  Crear un docker-compose
-      ```yml
-      version: "3.8"
-      services:
-        web:
-          container_name: my-web
-          image: my-web-test
-          build: .
-          #build:
-          #context: .
-          #dockerfile: myDockerfile
-      ```
-  3.  Correr docker-compose
-      ```sh
-      docker-compose build
-      ```
+  2. Crear un docker-compose
+
+  ```yml
+  version: "3.8"
+  services:
+    web:
+      container_name: my-web
+      image: my-web-test
+      build: .
+      #build:
+      #context: .
+      #dockerfile: myDockerfile
+  ```
+
+  3. Correr docker-compose
+
+  ```sh
+  docker-compose build
+  ```
 
 - **Sobreescribir el CMD de un contenedor en compose**
 
-```yml
-version: "3.8"
-services:
-  web:
-    image: debian
-    command: python -m SimpleHTTPServer 8080
-    ports:
-      - "8080:8080"
-```
+  ```yml
+  version: "3.8"
+  services:
+    web:
+      image: debian
+      command: python -m SimpleHTTPServer 8080
+      ports:
+        - "8080:8080"
+  ```
 
 - **Limitar los recursos**
 
-```yml
-version: "3.8"
-services:
-  web:
-    container_name: my-nginx
-    mem_limit: 20m
-    cpuset: "0"
-    image: nginx
-```
+  ```yml
+  version: "3.8"
+  services:
+    web:
+      container_name: my-nginx
+      mem_limit: 20m
+      cpuset: "0"
+      image: nginx
+  ```
 
 - **Reinicio automático del contenedor**
 
-1. Crear el docker-compose
+  1. Crear el docker-compose
 
-```yml
-version: "3.8"
-services:
-  web:
-    container_name: test
-    image: restart-image
-    build: .
-    restart:
-      always
-      # unless-stopped # Reinicio a menos que se detenga manualmente
-      # on-failure # Reinicio a pesar que falle internamente (error distinto de 0)
-```
+  ```yml
+  version: "3.8"
+  services:
+    web:
+      container_name: test
+      image: restart-image
+      build: .
+      restart:
+        always
+        # unless-stopped # Reinicio a menos que se detenga manualmente
+        # on-failure # Reinicio a pesar que falle internamente (error distinto de 0)
+  ```
 
-```sh
-docker run -d --restart always --name my-test -p 8080:80 nginx
-```
+  ```sh
+  docker run -d --restart always --name my-test -p 8080:80 nginx
+  ```
 
-2. Crear el Dockerfile
+  2. Crear el Dockerfile
 
-```
-FROM debian
+  ```
+  FROM debian
 
-COPY start.sh /start.sh
+  COPY start.sh /start.sh
 
-RUN chmod +x /start.sh
+  RUN chmod +x /start.sh
 
-CMD /start.sh
-```
+  CMD /start.sh
+  ```
 
-3. Crear el .sh
+  3. Crear el .sh
 
-```sh
-#!/bin/bash
+  ```sh
+  #!/bin/bash
 
-echo "Estoy vivo"
-sleep 5s
-echo "Estoy detenido"
-# exit 1 (distinto de 0 para 'on-failure')
-```
+  echo "Estoy vivo"
+  sleep 5s
+  echo "Estoy detenido"
+  # exit 1 (distinto de 0 para 'on-failure')
+  ```
 
-4. Build, up and show logs & watch
+  4. Build, up and show logs & watch
 
-```sh
-docker-compose -f "file".yml build
-docker-compose -f "file".yml up -d
-docker logs "container-name"
-watch docker ps
-```
+  ```sh
+  docker-compose -f "file".yml build
+  docker-compose -f "file".yml up -d
+  docker logs "container-name"
+  watch docker ps
+  ```
 
-- **Compose wordpress**
+### Compose wordpress
 
 ```yml
 version: "3.8"
@@ -676,7 +679,7 @@ networks:
   my_test:
 ```
 
-- **Compose Drupal**
+### Compose Drupal
 
 ```yml
 version: "3.8"
@@ -703,7 +706,7 @@ services:
     net:
 ```
 
-- **Compose Prestashop**
+### Compose Prestashop
 
 ```yml
 version: "3.8"
@@ -743,7 +746,7 @@ networks:
   my_net:
 ```
 
-- **Compose Joomla**
+### Compose Joomla
 
 ```yml
 version: "3.8"
@@ -763,7 +766,7 @@ services:
       MYSQL_ROOT_PASSWORD: example
 ```
 
-- **Compose React E-Commerce**
+### Compose React E-Commerce
 
 ```yml
 version: "3.8"
@@ -790,7 +793,7 @@ networks:
   net:
 ```
 
-- **Compose Guacamole**
+### Compose Guacamole
 
 ```yml
 version: "3.8"
@@ -837,7 +840,7 @@ networks:
     driver: bridge
 ```
 
-- **Compose Zabbix**
+### Compose Zabbix
 
 ```yml
 version: '3.8'
@@ -871,9 +874,9 @@ networks:
    net:
 ```
 
-**Container openssh-server**
+### Container openssh-server
 
-```
+```sh
 FROM debian
 
 RUN yum -y install openssh-server sudo
@@ -885,64 +888,66 @@ WORKDIR /home/guacamole
 CMD /usr/sbin/sshd -D
 ```
 
-# Docker Registry
-
-[TOP](#top)
+### Docker Registry
 
 - **Crear un registry local**
 
-1. Crear un directorio "registry"
-2. Correr un contenedor
+  1. Crear un directorio "registry"
+  2. Correr un contenedor
 
-```sh
-docker run -d -p 5000:5000 --name registry -v $PWD/data:/var/lib/registry registry:2
-```
+  ```sh
+  docker run -d -p 5000:5000 --name registry -v $PWD/data:/var/lib/registry registry:2
+  ```
 
-3. Tagear una imagen existente
+  3. Tagear una imagen existente
 
-```sh
-docker tag "nombre-imagen-existente":"tag" "host":"puerto"/"nombre-imagen-registry":"tag-imagen-registry"
-# Example
-docker tag hello-world:latest localhost:5000/hello-world:1.0
-```
+  ```sh
+  docker tag "nombre-imagen-existente":"tag" "host":"puerto"/"nombre-imagen-registry":"tag-imagen-registry"
+  # Example
+  docker tag hello-world:latest localhost:5000/hello-world:1.0
+  ```
 
-4. Eliminar imagenes
+  4. Eliminar imagenes
 
-```sh
-docker rmi "nombre-imagen"
-```
+  ```sh
+  docker rmi "nombre-imagen"
+  ```
 
-5. Bajar la imagen desde el propio registry local
+  5. Bajar la imagen desde el propio registry local
 
-```sh
-docker pull "host":"port"/"imagen-name"
-# Example
-docker pull localhost:5000/hello-world
-```
+  ```sh
+  docker pull "host":"port"/"imagen-name"
+  # Example
+  docker pull localhost:5000/hello-world
+  ```
 
-# Bash
+## Otros
+
+### Bash
 
 - **Simular archivos**
 
   `fallocate -l 10M /opt/file1`
 
-# MySQL
+### MySQL
 
 - **Lanzar contenedor MySQL mapeando puerto, con nombre, root-pass, usuario y user-pass**
   `docker run -d -p 3306:3306 --name "nombre-bd" -e "MYSQL_ROOT_PASSWORD="pw"" -e "MYSQL_DATABASE="nombre-bd"" -e "MYSQL_USER="nombre-usuario"" -e "MYSQL_PASSWORD="password-usuario" "nombre-imagen"[:"tag"]`
 
-# Solución a resource temporarily unavailable
+## Errores
+
+> Solución a resource temporarily unavailable
 
 Culpable: La función TasksMax Systemd / Linux
 
-## Prerrequisitos
+- Prerrequisitos
 
 systemd debe ser mayor o igual a 227 (versión 219 para RHEL)
 El kernel de Linux debe ser superior o igual a 4.3 (versión 3.10 para RHEL)
 La salida de systemctl status docker | grep Tasksincluye unLimit
 Este problema fue resuelto por Docker EE 17.06.2-ee-7.
 
-## Solución
+- Solución
 
 ```sh
 sudo systemctl set-property docker.service TasksMax=infinity
