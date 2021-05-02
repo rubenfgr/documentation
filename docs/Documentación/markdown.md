@@ -244,7 +244,7 @@ Esto es un \*ejemplo con asteriscos\*.
 
 ## Emojis
 
-Referencia: [www.emoji-cheat-sheet.com](www.emoji-cheat-sheet.com)
+Referencia: [[www.emoji-cheat-sheet.com](https://www.webfx.com/tools/emoji-cheat-sheet/)](https://www.webfx.com/tools/emoji-cheat-sheet/)
 
 ```md
 :+1: :sparkles: :camel: :tada: :rocket: :metal: :octocat:

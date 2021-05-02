@@ -45,7 +45,7 @@ La alta disponibilidad de datos es fundamental y suele estar integrada con la de
 
 | Nombre                       | Alta disponibilidad | Alto rendimiento | Características | Licencia    | URL                                                     |
 | ---------------------------- | ------------------- | ---------------- | --------------- | ----------- | ------------------------------------------------------- |
-| DRBD                         | X                   | X                | Datos           | GPLv2       | <a href="www.drbd.org" target="_blank">www.drbd.org</a> |
+| DRBD                         | X                   | X                | Datos           | GPLv2       | https://linbit.com/drbd/                                |
 | FreeNAS                      | X                   | X                | NAS             | BSD         | www.freenas.org                                         |
 | Openfiler                    | X                   | X                | SAN-NAS         | GPLv2       | www.openfiler.org                                       |
 | NAS Lite-2                   | X                   | X                | NAS             | Propietario | www.serverelements.com/naslite-2-usb.php                |
