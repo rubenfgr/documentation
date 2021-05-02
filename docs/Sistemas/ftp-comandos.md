@@ -1,5 +1,5 @@
 ---
-title: 'Referencia FTP'
+title: 'Comandos FTP'
 ---
 
 |COMANDO USO|Ejecuta macro|
