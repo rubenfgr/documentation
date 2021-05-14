@@ -86,9 +86,3 @@ title: "Temperatura ventilador"
   ```
 
 Luego del siguiente reinicio, se ejecutará el archivo OnReboot.sh otorgando las permisologías y el archivo Thermostat.sh se ejecutará cada minuto en el background, controlando el encendido y apagado del ventilador.
-
-Ajustar las temperaturas de umbral puede ser retador, no te asustes, ese es el comportamiento esperado en un sistema de control On-Off simple :D
-
-Nota: Siempre hay mas de una forma para asar un conejo, así que seguramente existen formas más fáciles o efectivas para atacar este problema ;)
-
-Suerte y nos comentas como te fue!

@@ -1,32 +1,34 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'RubenFGR Documentación',
-  tagline: 'Documentación para el desarrollo de aplicaciones multiplataforma y web, sistemas e iot',
-  url: 'https://blogdeldesarrollador.com',
-  baseUrl: '/documentation/',
+  title: "RubenFGR Documentación",
+  tagline:
+    "Documentación para el desarrollo de aplicaciones multiplataforma y web, sistemas e iot",
+  url: "https://blogdeldesarrollador.com",
+  baseUrl: "/documentation/",
   // baseUrl: '/',
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
-  favicon: 'https://raw.githubusercontent.com/rubenfgr/rubenfgr.github.io/b5205014cf5535234f31c5656431a493667a8121/assets/img/logotipo.svg',
-  organizationName: 'rubenfgr-doc', // Usually your GitHub org/user name.
-  projectName: 'documentation', // Usually your repo name.
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
+  favicon:
+    "https://raw.githubusercontent.com/rubenfgr/rubenfgr.github.io/b5205014cf5535234f31c5656431a493667a8121/assets/img/logotipo.svg",
+  organizationName: "rubenfgr-doc", // Usually your GitHub org/user name.
+  projectName: "documentation", // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'Ruben FGR - Documentación',
+      title: "Ruben FGR - Documentación",
       logo: {
-        alt: 'RubenFGR',
-        src: 'https://raw.githubusercontent.com/rubenfgr/rubenfgr.github.io/b5205014cf5535234f31c5656431a493667a8121/assets/img/logotipo.svg',
+        alt: "RubenFGR",
+        src: "https://raw.githubusercontent.com/rubenfgr/rubenfgr.github.io/b5205014cf5535234f31c5656431a493667a8121/assets/img/logotipo.svg",
       },
       items: [
         {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
-          position: 'right',
+          href: "https://github.com/facebook/docusaurus",
+          label: "GitHub",
+          position: "right",
         },
       ],
     },
     footer: {
-      style: 'dark',
+      style: "dark",
       copyright: `
         Copyright © ${new Date().getFullYear()}, Rubén Francisco Gazquez Rosales<br/>
         Documentación para el desarrollo de aplicaciones multiplataforma y web, sistemas e iot<br/>
@@ -36,16 +38,16 @@ module.exports = {
   },
   presets: [
     [
-      '@docusaurus/preset-classic',
+      "@docusaurus/preset-classic",
       {
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
-          routeBasePath: '/',
+          sidebarPath: require.resolve("./sidebars.js"),
+          routeBasePath: "/",
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
+            "https://github.com/facebook/docusaurus/edit/master/website/",
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve("./src/css/custom.css"),
         },
       },
     ],
