@@ -206,6 +206,10 @@ docker run -d -w /"dir-name" "nombre-imagen"[:"tag"]
 
 `docker rm -fv "nombre-contenedor" ["nombre-contenedor"...]`
 
+- **Eliminar contenedores "exited"**
+
+`docker rm -v $(docker ps -a -q -f status=exited)`
+
 - **Eliminar todos los contenedores**
 
 `docker ps -q | xargs docker rm -f`
