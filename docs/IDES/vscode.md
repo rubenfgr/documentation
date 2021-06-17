@@ -60,6 +60,25 @@ title: "VSCode"
 
 ---
 
+## Code Formatters
+
+- Prettier - Code formatter
+- Prettier ESlint
+
+---
+
+## Programing activity
+
+- WakaTime
+
+## Code Spelling
+
+- Code Spell Checker
+
+## File Compareit
+
+- Compareit
+
 ## JavaScript / TypeScript
 
 - Live Server
@@ -69,8 +88,6 @@ title: "VSCode"
 - Import Cost
 - JavaScript (ES6) snippets
 - npm Intellisense
-- Prettier - Code formatter
-- Prettier ESlint
 - Quokka.js
 - View Node Package
 - Wallaby.js
@@ -111,6 +128,15 @@ title: "VSCode"
 - Markdown Preview Enhanced
 
 ---
+
+## SSH
+
+- Remote - SSH
+
+## Docker
+
+- Docker
+- Remote - Containers
 
 ## Cliente FTP
 
