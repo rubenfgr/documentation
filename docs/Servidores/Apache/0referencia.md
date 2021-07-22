@@ -166,6 +166,15 @@ Archivo de variables de entorno de apache
 
 ## Virtual Host
 
+**Configuración común para todos los virtualhost en local**
+
+```conf
+<VirtualHost *>
+   DocumentRoot "C:\xampp\htdocs"
+   ServerName localhost
+</VirtualHost>
+```
+
 1. Crear un nuevo fichero "nombre-host.conf" en /etc/apache2/sites-available
 2. Copiar el código:
 
