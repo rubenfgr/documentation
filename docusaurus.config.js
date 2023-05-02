@@ -3,7 +3,8 @@ module.exports = {
   title: "RubenFGR Documentación",
   tagline:
     "Documentación para el desarrollo de aplicaciones multiplataforma y web, sistemas e iot",
-  url: "https://blogdeldesarrollador.com",
+  url: "/",
+  // url: "https://blogdeldesarrollador.com",
   baseUrl: "/documentation/",
   // baseUrl: '/',
   onBrokenLinks: "throw",

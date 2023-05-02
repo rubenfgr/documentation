@@ -2,7 +2,29 @@
 title: 'Matar procesos de Node'
 ---
 
-## Matar todos los procesos
+## Windows
+
+### Listar procesos
+
+```sh
+tasklist
+```
+
+### Matar todos los procesos de Node
+
+```sh
+taskkill /F /IM node.exe
+```
+
+### Matar proceso por PID
+
+```sh
+taskkill /F /PID 3592
+```
+
+## Linux
+
+### Matar todos los procesos
 
 ```sh
 pkill -f node
@@ -10,7 +32,7 @@ pkill -f nodejs
 killall node
 ```
 
-## Matar procesos individuales
+### Matar procesos individuales
 
 ```sh
 # Buscar/filtrar

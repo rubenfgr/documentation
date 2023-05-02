@@ -1,10 +1,10 @@
 ---
-title: 'WSL 2 Memory overflow"
+title: WSL 2 Memory overflow
 ---
 
 ## Controlar el uso de memoria con WSL 2
 
-1. Ir a C:\users\<tu-usuario> y crear un archivo .wslconfig
+1. Ir a C:\users\tu-usuario y crear un archivo .wslconfig
 
 ```sh
 [wsl2]
